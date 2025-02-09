@@ -16,7 +16,7 @@ export default function Home() {
     e.preventDefault();
     
     try {
-      const response = await fetch("https://your-backend-api.com/service-request", {
+      const response = await fetch("https://install-1w7o.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
