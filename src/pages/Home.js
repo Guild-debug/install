@@ -12,9 +12,28 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Service Request Submitted:", formData);
+    
+    try {
+      const response = await fetch("https://your-backend-api.com/service-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        alert("Service request submitted successfully!");
+        setFormData({ name: "", service: "", location: "", date: "" });
+      } else {
+        alert("Failed to submit service request");
+      }
+    } catch (error) {
+      console.error("Error submitting request:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
